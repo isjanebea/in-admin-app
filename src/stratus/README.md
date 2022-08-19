@@ -1,4 +1,3 @@
-# New Admin 📲 💻 🚀 PWA
 ## Conventions Stratus ⚛️ 🚀
 
 ### Folder & file structures 📁 📄
