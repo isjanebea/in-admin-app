@@ -15,10 +15,8 @@ function PageMain() {
   const { push } = useHistory();
   const { isMobile } = useResponsive();
 
-  const handleGoToConfiguration = () => {
-    push('/configuration');
-  };
-
+  const handleGoToConfiguration = () => push('/configuration');
+  const handleGoToDelivery = () => push('/delivery');
   const handleGoToOrders = () => goTo(nexo, '/orders');
 
   const actions = isMobile ? (
@@ -31,6 +29,9 @@ function PageMain() {
         icon={CogIcon}
       >
         Configuración
+      </Button>
+      <Button appearance="secondary" onClick={handleGoToDelivery}>
+        Envios personalizados
       </Button>
       <Button appearance="primary" onClick={handleGoToOrders}>
         Ir a ventas
