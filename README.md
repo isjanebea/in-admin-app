@@ -2,7 +2,7 @@
 
 > An "In-Admin App", is an application that runs and executes within the context of Nuvemshop's administration panel, through the use of an iframe. The purpose of building in-admin apps is to provide integrations that feel more seamless and native.
 
-> The objective of this project is to provide the developer with tools and examples to create such an embedded application. We will also provide 3 example applications: (1) one simple front end app in react, (2) one simple front end app in vanilla js, (3) a simple back end application written in node js that can connect with the previous two example front end apps.
+The objective of this project is to provide the developer with tools and examples to create such an embedded application. We will also provide 3 example applications: (1) one simple front end app in react, (2) one simple front end app in vanilla js, (3) a simple back end application written in node js that can connect with the previous two example front end apps.
 
 ## ⚡️ Let's start
 
@@ -11,21 +11,30 @@ Before we start let's do a macro view to understand the main actors with their r
 ![Untitled_2022-12-07_17-53-25](https://user-images.githubusercontent.com/44773699/206258946-38ecedf7-dbba-4515-a7c3-de8dc9ae4799.png)
 
 
-## 🎭 Actors
+As we can see in the graph above, we find 3 actors that interact with each other. They are the application developed by the partner hereinafter **In-admin app**, Nuvemshop's administration panel hereinafter **Admin** and SDK that allows connecting to the Admin and In-admin App hereinafter **Nexo**.
 
-As a developer, you will be responsible for developing the code in the In-Admin App. Your app, will be connected to the Nuvemshop Admin, through an SDK called Nexo. We are going to briefly describe the responsibilities of each Actor:
+
+## 🎭 Let's know the responsibilities of each one of the actors
 
 ### In-admin App
-This is the application that you will write. The application has to be a simple HTML document with public access via an URL. Below, you will find comprehensive documentation about how Nexo works. For now, we will just describe the basics:
-- Use Start Nexo to initialize message exchange between the Admin, and the App (this will start the bridge for future communications)
-- After initialization, you will have to explicitely Notify that the application is ready to be shown, this way, the Admin will render it
-- Finally, you will execute the In-App business model logic
+This is the application that you will write. The application has to be a simple HTML document with public access via an URL. This application will be loaded within the Admin through an iframe, it is for this reason that we require the public URL of the application.
+
+For the **In-admin App** to be compatible with **Admin** it is necessary to have **Nexo** installed and configured, below you will find comprehensive documentation about how Nexo works.
+
+For now, we'll just describe important steps:
+- You will have to use Nexo to initialize the communication between the In-admin App and the Admin. [How to initialize the communication?](...)
+- After the communication has initialized, In-admin App will have to explicitly notify the Admin that the application is ready to be shown. [How to communicate that the application is ready?](..) 
+- Finally, you will execute the In-App business model logic using the different actions that we make available. [See available actions](...)
 
 ### Nexo
-SDK to establish communication between the Admin and the Application
-- Being the bridge for communications between the Admin and the Application
-- Defines and manages the available actions that are exchanged through messages
-- Provides tools to make easier the implementation of actions in the application 
+
+As we mentioned, it is the SDK to establish communication between the Admin and the In-admin App. This SDK developed by Nuvemshop compatible with Typescript and available through NPM
+
+- Being the bridge for communications between the Admin and the In-admin App
+- Defines and manages the available actions that are exchanged through messages. [See available actions](...)
+- Provides tools to make easier the implementation of actions in the application.  [Learn more about the Helpers](https://www.npmjs.com/package/@tiendanube/nexo#helpers)
+
+[Learn more about using Nexo](https://www.npmjs.com/package/@tiendanube/nexo)
 
 ### Admin
 Admin actor is responsible for managing the currently logged in Nuvemshop merchant, which means:
@@ -38,8 +47,14 @@ Admin actor is responsible for managing the currently logged in Nuvemshop mercha
 
 
 ## 🚦Application initialization flow
+Below we will describe the initiation flow of an In-admin App from the moment the user decides to view the application.
 
-![output-onlinepngtools](https://user-images.githubusercontent.com/44773699/206066084-f754fcb9-711e-452c-9e21-f86a7f0b3fe2.png)
+1. The user decides to open the application, it can be launched through a URL (stored as bookmarks) or an option in the menu.
+2. The admin gets the app information and proceeds to load the In-admin App in an iframe. While the Admin shows a loading message.
+3. After the In-admin App has loaded it will have to notify through Nexo that he is already connected and it will receive as a response that the Admin is also connected.
+4. Finally, when the In-admin App is ready to display the content, it will have to notify through Nexo "I am ready". In this way, Admin will be able to replace the loading message with the application.
+
+![output-onlinepngtools-img](https://user-images.githubusercontent.com/44773699/207926199-17e214b8-97e6-49be-acf7-dffb5c7432cc.png)
 
 
 ## 💬 Introduction to Nexo
