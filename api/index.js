@@ -9,7 +9,7 @@ require("./passport");
 
 app.use(cors());
 
-const port = proess.env.PORT || 3200;
+const port = process.env.PORT || 3200;
 
 app.get("/", async (_, res) => {
   res.json({ status: "hi mom!" });
