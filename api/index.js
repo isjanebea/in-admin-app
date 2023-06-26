@@ -1,3 +1,5 @@
+
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -7,7 +9,7 @@ require("./passport");
 
 app.use(cors());
 
-const port = 3200;
+const port = proess.env.PORT || 3200;
 
 app.get("/", async (_, res) => {
   res.json({ status: "hi mom!" });
